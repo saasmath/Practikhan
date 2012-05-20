@@ -43,7 +43,7 @@ $route['404_override'] = '';
 
 
 $route['code-edit'] = 'graphs/edit';
-$route['problem/:num/profile'] = 'problem/profile';
+$route['exercise/:num/profile'] = 'exercise/profile';
 $route['graphs'] = 'graphs/view';
 
 

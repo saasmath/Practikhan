@@ -14,7 +14,7 @@
 include_once (realpath(dirname(__FILE__) . "/" . "base.php"));
 
 
-class Home extends Base {
+class Browse extends Base {
 
 
     function __construct() {
@@ -23,8 +23,13 @@ class Home extends Base {
 	
 	
 	function index() {
-		$this->load->view('home', $this->page_data);
+		// get problems
+		$problems = $this->practikhan_model->get('problem');
+		$this->page_data['problems'] = $problems;
+		$this->page_data['problems_count'] = (empty($problems) ? 0 : count($problems));
+		
+		$this->load->view('browse', $this->page_data);
 	}
-	
+
 
 }

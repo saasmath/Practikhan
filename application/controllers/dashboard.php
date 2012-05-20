@@ -26,9 +26,9 @@ class Dashboard extends Base {
 		$uid = $this->person_data['uid'];
 
 		// get problems
-		$problems = $this->practikhan_model->get('problem', array('user'=>$uid));
-		$this->page_data['problems'] = $problems;
-		$this->page_data['problems_count'] = (empty($problems) ? 0 : count($problems));
+		$exercises = $this->practikhan_model->get('exercise', array('user'=>$uid));
+		$this->page_data['exercises'] = $exercises;
+		$this->page_data['exercises_count'] = (empty($exercise) ? 0 : count($exercise));
 
 		// get quizzes
 		$quizzes = $this->practikhan_model->get('quiz', array('user'=>$uid));

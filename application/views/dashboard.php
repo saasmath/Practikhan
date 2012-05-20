@@ -19,16 +19,16 @@
 		</div>
 
 		<div style="margin-top:60px;"></div>
-		<a href="index.php/problem/build" class="btn btn-info dashboard-btn">Create New Problem</a>
+		<a href="index.php/exercise/build" class="btn btn-info dashboard-btn">Create New Exercise</a>
 		<div>
-			<h1 class="dashboardTitle">Your Problems</h1>
-			<?php if ($problems_count) { ?>
-			<ul class="navList problems">
-				<?php foreach ($problems AS $p) { ?>
-				<li class="problem navListItem">
-					<a href="index.php/problem/<?=$p->id?>/profile">
-						<span class="name"><?=$p->name?></span>
-						<span class="topic pull-right"><?=$p->topic?></span>
+			<h1 class="dashboardTitle">Your Exercises</h1>
+			<?php if ($exercises_count) { ?>
+			<ul class="navList exercises">
+				<?php foreach ($exercises AS $e) { ?>
+				<li class="exercise navListItem">
+					<a href="index.php/exercise/<?=$e->id?>/profile">
+						<span class="name"><?=$e->name?></span>
+						<span class="topic pull-right"><?=$e->topic?></span>
 					</a>
 				</li>
 				<?php } ?>
@@ -46,7 +46,7 @@
 				<p class="dashboardStat">
 					<strong><?=$quizzes_count?></strong> quizzes
 					&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-					<strong><?=$problems_count?></strong> problems
+					<strong><?=$exercises_count?></strong> problems
 				</p>
 			</div>
 		</div>

@@ -17,21 +17,17 @@
 
 	<div class="problemDemo">
 		<div class="exercise">
-			<div class="vars">
-			  <?=$problem->vars?>
-			</div>
+			<?=$problem->vars?>
 
 			<div class="problems">
 				<div id="problem-type-or-description">
 					<!-- <p class="problem"></p> -->
-					<div class="question"><?=$problem->question?></div>
-					<div class="solution"><?=$problem->solution?></div>
+					<?=$problem->question?>
+					<?=$problem->solution?>
 				</div>
 			</div>
 
-			<div class="hints">
-			  	<?=$problem->hints?>
-			</div>
+			<?=$problem->hints?>
 		</div>
 	</div>
 

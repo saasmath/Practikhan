@@ -65,7 +65,8 @@ div.dashboard {
 	}
 
 	div.dashboard-right {
-		background:#eee;
+		background:#eee; border:1px solid #888; border-right:none;
+		.roundedLeft(3px);
 		position:absolute; top:0px; right:0px;
 		width:250px;
 		padding:0 0 30px;
@@ -126,12 +127,10 @@ ul.navList {
 // Problem Builder  -----------------------------------------------------------
 
 div.builder {
-	
-
 	div.builderForm {
 		
 		position:relative;
-		margin-right:450px;
+		margin:0;
 
 		h1 {
 			color:#666;
@@ -140,9 +139,17 @@ div.builder {
 		div.alert {
 			margin:10px;
 		}
+
+
 		form.well {
+			background:none;
 			border:none; outline:none; box-shadow:none;
 		}
+
+		div.builderRow {
+			margin-top:20px; margin-bottom:20px;
+		}
+
 		div.inline-form {
 			label {
 				display:inline-block;
@@ -156,15 +163,22 @@ div.builder {
 		label {
 			color:#888; font-size:20px; font-weight:600;
 		}
-		textarea {
-			min-height:120px;
+		label.minor {
+			font-size:14px; font-weight:500;
+			em {
+				font-weight:300;
+			}
 		}
-	}
-
-	div.builderPreview {
-		background:#DDD;
-		position:absolute; top:0px; right:0px;
-		width:450px; height:100%;
+		div.codemirrorWrapper {
+			border:1px solid #bbb;
+		}
+		textarea {
+			height:105px;
+		}
+		button#buildExerciseBtn, button#testExerciseBtn {
+			font-size:24px;
+			margin-right:20px; padding:8px 30px;
+		}
 	}
 }
 

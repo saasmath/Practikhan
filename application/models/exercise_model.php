@@ -14,7 +14,7 @@
 include_once (realpath(dirname(__FILE__) . "/" . "practikhan_model.php"));
 
 
-class Problem_model extends Practikhan_model {
+class Exercise_model extends Practikhan_model {
 	
 	
 	function __construct() {
@@ -22,20 +22,24 @@ class Problem_model extends Practikhan_model {
     }
 	
 
-	function create($user, $name, $info, $topic, $vars, $question, $solutions, $choices=NULL, $hints=NULL) {		
+	function create($user, $name, $info, $topic, $vars, $dataensure, $problem, $question, $solutions, $dataforms, $datatype, $choices=NULL, $hints=NULL) {		
 		$data = array(
 			'name'		=> $name,
 			'info'		=> $info,
 			'topic'		=> $topic,
 			'vars'		=> $vars,
+			'dataensure'		=> $dataensure,
+			'problem'	=> $problem,
 			'question'	=> $question,
 			'solution'	=> $solutions,
+			'dataforms'	=> $dataforms,
+			'datatype'	=> $datatype,
 			'choices'	=> $choices,
       	    'hints'		=> $hints,
       	    'created'	=> date('Y-m-d H:i:s'),
       	    'user'		=> $user
 		);
-        $this->db->insert('problem', $data);
+        $this->db->insert('exercise', $data);
         $id = $this->db->insert_id();
 
         if (!$id) return FALSE;

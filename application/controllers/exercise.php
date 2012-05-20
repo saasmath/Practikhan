@@ -14,12 +14,12 @@
 include_once (realpath(dirname(__FILE__) . "/" . "base.php"));
 
 
-class Problem extends Base {
+class Exercise extends Base {
 
 
     function __construct() {
         parent::__construct();
-        $this->load->model('Problem_model');
+        $this->load->model('Exercise_model');
 	}
 
 
@@ -36,14 +36,18 @@ class Problem extends Base {
 			'info'		=> '',
 			'topic'		=> '',
 			'vars'		=> '',
+			'dataensure'=> '',
+			'problem'	=> '',
 			'question'	=> '',
 			'solution'	=> '',
+			'dataforms'	=> '',
+			'datatype'	=> '',
 			'choices'	=> '',
 			'hints'		=> ''
 		);
 
 		if (!$submitted) {
-			$this->load->view('problem/build', $this->page_data);
+			$this->load->view('exercise/build', $this->page_data);
 			return;
 		}
 
@@ -53,9 +57,13 @@ class Problem extends Base {
 		$topic = $this->input->post('topic');
 
 		$vars = $this->input->post('vars');
+		$dataensure = $this->input->post('dataensure');
+		$problem = $this->input->post('problem');
 		$question = $this->input->post('question');
 		$choices = $this->input->post('choices');
 		$solution = $this->input->post('solution');
+		$dataforms = $this->input->post('dataforms');
+		$datatype = $this->input->post('datatype');
 		$hints = $this->input->post('hints');
 		
 		$this->page_data['values'] = array(
@@ -63,83 +71,116 @@ class Problem extends Base {
 			'info'		=> $info,
 			'topic'		=> $topic,
 			'vars'		=> $vars,
+			'dataensure'		=> $dataensure,
+			'problem'	=> $problem,
 			'question'	=> $question,
 			'solution'	=> $solution,
+			'dataforms'	=> $dataforms,
+			'datatype'	=> $datatype,
 			'choices'	=> $choices,
 			'hints'		=> $hints
 		);
 
 		if (!$this->v->run($name,'string')) {
 			$this->page_data['errors'] = 'please include a name';				
-			$this->load->view('problem/build', $this->page_data);
+			$this->load->view('exercise/build', $this->page_data);
 			return;
 		}
 
 		if (!$this->v->run($info,'string')) {
 			$this->page_data['errors'] = 'please include a description';				
-			$this->load->view('problem/build', $this->page_data);
+			$this->load->view('exercise/build', $this->page_data);
 			return;
 		}
 
 		if (!$this->v->run($topic,'string')) {
 			$this->page_data['errors'] = 'Please select a topic';				
-			$this->load->view('problem/build', $this->page_data);
+			$this->load->view('exercise/build', $this->page_data);
 			return;
 		}
 
 
 		if (!$vars) {
 			$this->page_data['errors'] = 'vars definition required';				
-			$this->load->view('problem/build', $this->page_data);
+			$this->load->view('exercise/build', $this->page_data);
 			return;
 		}
 		if (!$question) {
 			$this->page_data['errors'] = 'question definition required';				
-			$this->load->view('problem/build', $this->page_data);
+			$this->load->view('exercise/build', $this->page_data);
 			return;
 		}
 		if (!$solution) {
 			$this->page_data['errors'] = 'question definition required';				
-			$this->load->view('problem/build', $this->page_data);
+			$this->load->view('exercise/build', $this->page_data);
 			return;
 		}
 
-		$problem = $this->Problem_model->create($uid,
+		$exercise = $this->Exercise_model->create($uid,
 												$name, 
 												$info, 
 												$topic, 
-												$vars, 
+												$vars,
+												$dataensure,
+												$problem,
 												$question, 
 												$solution, 
+												$dataforms,
+												$datatype,
 												$choices, 
 												$hints);
 
-		if (!$problem) {
+		if (!$exercise) {
 			$this->page_data['errors'] = 'There was an error on our servers, please try again';				
-			$this->load->view('problem/build', $this->page_data);
+			$this->load->view('exercise/build', $this->page_data);
 			return;
 		}
 
 		// login successful, redirect to home page
-		redirect(base_url()."index.php/problem/$problem/profile");
+		redirect(base_url()."index.php/exercise/$exercise/profile");
 	}
+
+
 
 
 	function profile() {
 		$id = $this->uri->segment(2);
 
-		$problem = $this->Problem_model->getOne('problem', array('id'=>$id));
-		if (!$problem) {
+		$exercise = $this->Exercise_model->getOne('exercise', array('id'=>$id));
+		if (!$exercise) {
 			$this->page_data['errors'] = 'Question not found';				
-			$this->load->view('problem/profile', $this->page_data);
+			$this->load->view('exercise/profile', $this->page_data);
 			return;
 		}
-		$this->page_data['problem'] = $problem;
+
+		if (!preg_match('/<div\s+class="vars"\s/', $exercise->vars)) {
+			$exercise->vars = '<div class="vars">'.$exercise->vars.'</div>';
+		}
+		if (!preg_match('/<div\s+class="question"\s/', $exercise->question)) {
+			$exercise->question = '<div class="question">'.$exercise->question.'</div>';
+		}
+		if (!preg_match('/<div\s+class="solution"\s/', $exercise->solution)) {
+			$exercise->solution = '<div class="solution">'.$exercise->solution.'</div>';
+		}
+
+		// if (!preg_match('/<div\s+class="problem"\s/', $exercise->problem)) {
+		// 	$exercise->problem = '<div class="problem">'.$exercise->problem.'</div>';
+		// }
+		if (!preg_match('/<div\s+class="choices"\s/', $exercise->choices)) {
+			$exercise->choices = '<div class="choices">'.$exercise->choices.'</div>';
+		}
+		if (!preg_match('/<div\s+class="hints"\s/', $exercise->hints)) {
+			$exercise->hints = '<div class="hints">'.$exercise->hints.'</div>';
+		}
+
+		$this->page_data['exercise'] = $exercise;
 		$this->page_data['subscribed'] = 0;
 		$this->page_data['loadkhan'] = 1;
 		
-		$this->load->view('problem/profile', $this->page_data);
+		$this->load->view('exercise/profile', $this->page_data);
 	}
+
+
 
 
 	function controlpanel() {

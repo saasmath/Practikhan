@@ -30,7 +30,7 @@
             Practikhan
           </a>
           <ul class="nav">
-            <li class="active">
+            <li>
               <a href="browse">Browse</a>
             </li>
             <li><a href="search">Search</a></li>

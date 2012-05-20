@@ -5,6 +5,26 @@
   $(document).ready(function() {
 
     //$('#myTab a:last').tab('show');
+    var textArea = document.getElementById('builderHints');
+    var myCodeMirror = CodeMirror.fromTextArea(textArea, {
+      lineNumbers: true
+    });
+
+    textArea = document.getElementById('builderVars');
+    myCodeMirror = CodeMirror.fromTextArea(textArea, {
+      lineNumbers: true
+    });
+
+    // textArea = document.getElementById('builderSolution');
+    // myCodeMirror = CodeMirror.fromTextArea(textArea, {
+    //   lineNumbers: true
+    // });
+
+    textArea = document.getElementById('builderChoices');
+    myCodeMirror = CodeMirror.fromTextArea(textArea, {
+      lineNumbers: true
+    });
+
 
     // wire registration form -------------------------------------------------
     $('#registerForm').on('submit', function() {
