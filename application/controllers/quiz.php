@@ -22,7 +22,7 @@ class Quiz extends Base {
 	}
 	
 	
-	function create() {
+	function build() {
 		
 	}
 

@@ -1,0 +1,137 @@
+@import '_mixins';
+
+body {
+	background:#9fddea;
+}
+
+div.container.main {
+	background:#f4f4f4;
+	border:1px solid #bbb;
+	.shadowed(0px,5px,20px,1px,0.35);
+	.rounded(5px);
+	position:relative; top:60px;
+	min-height:500px;
+}
+
+div.bg-footer {
+	background: url('../img/bg-bottom.png');
+	background-size:100% 100%;
+	position:relative;
+	width:100%; height:353px;
+	margin-top:100px;
+	z-index:-1;
+}
+
+
+// Login  ---------------------------------------------------------------------
+form.loginForm {
+	margin:10px;
+
+	label.rememberme {
+		position:relative; top:10px; left:4px;
+	}
+}
+
+
+div#registerModal {
+	
+	button.registerSubmit {
+		margin-right:90px;
+	}
+}
+
+
+// Dashboard  -----------------------------------------------------------------
+
+div.dashboard {
+	position:relative;
+
+	div.dashboard-left {
+		background:#FFF;
+		position:relative;
+		margin-right:250px;
+		min-height:550px;
+
+		a.dashboard-btn {
+			font-size:32px; line-height:1.2em;
+			display:block; height:auto;
+			margin:10px 30px; padding:5px;
+		}
+
+		div.dashboard-col {
+			
+			width:250px;
+		}
+	}
+
+	div.dashboard-right {
+		background:#eee;
+		position:absolute; top:0px; right:0px;
+		width:250px;
+		height:500px;
+	}
+}
+
+// Problem Builder  -----------------------------------------------------------
+
+div.builder {
+	
+
+	div.builderForm {
+		
+		position:relative;
+		margin-right:450px;
+
+		h1 {
+			color:#666;
+			margin:10px;
+		}
+		div.alert {
+			margin:10px;
+		}
+		form.well {
+			border:none; outline:none; box-shadow:none;
+		}
+		div.inline-form {
+			label {
+				display:inline-block;
+				width:130px;
+			}
+		}
+		hr {
+			border-top:1px solid #BBB;
+			border-bottom:1px solid #FFF;
+		}
+		label {
+			color:#888; font-size:20px; font-weight:600;
+		}
+		textarea {
+			min-height:120px;
+		}
+	}
+
+	div.builderPreview {
+		background:#DDD;
+		position:absolute; top:0px; right:0px;
+		width:450px; height:100%;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

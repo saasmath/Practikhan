@@ -23,7 +23,7 @@ class Home extends Base {
 	
 	
 	function index() {
-		
+		$this->load->view('home', $this->page_data);
 	}
 	
 

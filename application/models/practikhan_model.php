@@ -36,116 +36,6 @@ class Practikhan_model extends CI_Model {
 	}
 
 	
-	
-	
-	/**
-	 * get the initial set of posts for user's news feed (AJAX)
-	 *
-	 * @param int book_id			id of book (optional)
-	 */
-	function addLog($agent, $tag, $scope='', $note='', $flag='') {
-
-		$data = $agent;
-		$data['tag'] = $tag;
-		$data['scope'] = $scope;
-		$data['note'] = $note;
-		$data['flag'] = $flag;
-		$data['created'] = date('Y-m-d H:i:s');
-
-		$this->db->insert('log', $data);
-	}
-	
-	
-	
-	
-	/**
-	 * get the initial set of posts for user's news feed (AJAX)
-	 *
-	 * @param int book_id			id of book (optional)
-	 */
-	function addError($note,$ip,$browser,$version,$mobile,$platform,$referrer,$tag='') {
-		$data = array(
-			'ip'        => $ip,
-			'browser'   => $browser,
-			'version'   => $version,
-			'mobile'    => $mobile,
-			'platform'  => $platform,
-			'referrer'  => $referrer,
-			'note'      => $note,
-			'tag'       => $tag,
-			'created'   => date('Y-m-d H:i:s')
-		);
-		
-		$this->db->insert('logerror',$data);
-	}
-	
-	
-
-
-	/**
-	 * get the initial set of posts for user's news feed (AJAX)
-	 *
-	 * @param int book_id			id of book (optional)
-	 */
-	function addClientError($note,$context,$ip,$browser,$version,$mobile,$platform,$referrer) {
-
-		if (preg_match('/Uncaught Error: "create" can only be used in extension/', $note)) {
-			return;
-		}
-
-		$data = array(
-			'ip'        => $ip,
-			'browser'   => $browser,
-			'version'   => $version,
-			'mobile'    => $mobile,
-			'platform'  => $platform,
-			'referrer'  => $referrer,
-			'note'      => $note,
-			'tag'       => $context,
-			'created'   => date('Y-m-d H:i:s')
-		);
-		
-		$this->db->insert('logerror',$data);
-	}
-
-
-
-	/**
-	 * get the initial set of posts for user's news feed (AJAX)
-	 *
-	 * @param int book_id			id of book (optional)
-	 */
-	function addVisit($data) {
-		$this->db->insert('visit',$data);
-	}
-
-
-
-	function verifyvisit($token) {
-		$this->db->where('token', $token);
-		$this->db->update('visit', array('verified'=>1));
-	}
-
-
-
-	function addAjaxError($url,$params,$response,$context,$ip,$browser,$version,$mobile,$platform,$referrer) {
-
-		$data = array(
-			'ip'        => $ip,
-			'browser'   => $browser,
-			'version'   => $version,
-			'mobile'    => $mobile,
-			'platform'  => $platform,
-			'referrer'  => $referrer,
-			'url'      => $note,
-			'params'      => $note,
-			'response'      => $note,
-			'created'   => date('Y-m-d H:i:s')
-		);
-		
-		$this->db->insert('ajaxerror',$data);
-	}
-	
 
 
 	function updateLastVisitById($id) {
@@ -156,12 +46,7 @@ class Practikhan_model extends CI_Model {
     }
 
 	
-
-
-	function unsubscribe($data) {
-		$this->db->insert('unsubscribe', $data);
-	}
-
+	
 	
 	/******************************************************************************/
     /** UTILITIES *****************************************************************/

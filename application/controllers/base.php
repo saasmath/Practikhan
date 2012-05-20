@@ -31,144 +31,50 @@ class Base extends CI_Controller {
 		parent::__construct();
 		
 		$this->output->set_header('P3P: CP="CAO PSA OUR"');
-		#$this->output->set_header('Access-Control-Allow-Origin: http://thinkbinder.com');
-		#$this->output->set_header('Access-Control-Allow-Methods: POST, GET');
-
-		$is_ie8 = 0;
-		$is_XP = 0;
-		$this->load->library('user_agent');
-		if (isset($this->agent)) {
-			// are we dealing with an XP user?
-		    $is_XP = (preg_match('/Windows XP/', $this->agent->platform()) ? 1 : 0);
-			
-			// redirect unsupported browsers to upgrade message
-			$browser = $this->agent->browser();
-			$version = intval($this->agent->version());
-			if (preg_match('/explorer/i', $browser) && $version < 8) {
-				redirect('unsupported');
-				return;
-			}
-			
-			$is_ie8 = (preg_match('/explorer/i', $browser) && $version == 8 ? 1 : 0);
-
-			$this->page_data['browser'] = $browser;
-		}
-		$this->page_data['isXP'] = $is_XP;
-		$this->page_data['is_ie8'] = $is_ie8;
 		
+		$this->page_data['logged_in'] = 0;
 		// the user is logged in, prep their basic information
 		if (isset($this->session)) {
 			if ($this->session->userdata('logged_in')) {
-	            $this->person_data['id']				= $this->session->userdata('uid');
-	            $this->person_data['uid']				= $this->session->userdata('uid');
-	            $this->person_data['email']				= $this->session->userdata('email');
-	            $this->person_data['name']				= $this->session->userdata('firstname').' '.$this->session->userdata('lastname');
-	            $this->person_data['firstname']			= $this->session->userdata('firstname');
-	            $this->person_data['lastname']			= $this->session->userdata('lastname');
-				
-	            $this->person_data['pictureURL']		= $this->session->userdata('pictureURL');
-	            $this->person_data['pic']				= $this->session->userdata('pictureURL');
-
-	            $this->person_data['fbID']				= $this->session->userdata('fbID');
-	            $this->person_data['fbOAuthToken']		= $this->session->userdata('fbOAuthToken');
-
-	            $this->person_data['notifyHistory']		= $this->session->userdata('notifyHistory');
-	            $this->person_data['notifyWatchlist']	= $this->session->userdata('notifyWatchlist');
-	            $this->person_data['notifyMail']		= $this->session->userdata('notifyMail');
-	            $this->person_data['notifyInvitation']	= $this->session->userdata('notifyInvitation');
-	            $this->person_data['notifyRequest']		= $this->session->userdata('notifyRequest');
-				
-	            $this->page_data['person_data']			= $this->person_data;
+	            $this->person_data['uid']		= $this->session->userdata('uid');
+	            $this->person_data['email']		= $this->session->userdata('email');
+	            $this->person_data['firstname']	= $this->session->userdata('firstname');
+	            $this->person_data['lastname']	= $this->session->userdata('lastname');
+	            $this->person_data['picture']	= $this->session->userdata('picture');				
+	            $this->page_data['person_data']	= $this->person_data;
+				$this->page_data['logged_in'] = 1;
 			}
 		}
 		
 		// where are they trying to go?
-        $unsecured_pages = array('login',
+        $unsecured_pages = array('',
+        						 'home',
         						 'register',
-        						 'forgot',
-        						 'main',
-        						 'verify',
-        						 'gate',
-        						 '',
-        						 'funnel',
-        						 'start',
-        						 'join',
-        						 'log',
-        						 'invitation',
-        						 'unsupported',
-        						 'unsubscribe');
+        						 'search',
+        						 'browse',
+        						 'login',
+        						 'logout',
+        						 'forgot');
 		
-		if ($this->uri->segment(1) == 'bind') {
-
-		}
-		elseif ($this->uri->segment(1) == 'posted') {
-			
-		}
-		elseif ($this->uri->segment(1) == 'invitation') {
-			
-		}
-		elseif ($this->uri->segment(1) == 'unsubscribe') {
-			
-		}
-		elseif ($this->uri->segment(1) == 'fb') {
-			
-		}
-		elseif ($this->uri->segment(1) == 'logout') {
-			
-		}
 		// requesting unsecured page
-        elseif (in_array($this->uri->segment(1), $unsecured_pages)) {
+        if (in_array($this->uri->segment(1), $unsecured_pages)) {
 			// logged in users get redirected to main application
-            if ($this->session->userdata('logged_in') && $this->uri->segment(1) != 'funnel' 
-                && $this->uri->segment(1) != 'join' && $this->uri->segment(1) != 'start')
-            {
-                
-                redirect(base_url().'app');
+            if ( $this->session->userdata('logged_in') && $this->uri->segment(1) == '' ) {
+                redirect('dashboard');
             }
-        }
-		// not logged in + not going to public page, redirect to splash page
-		elseif (isset($this->session)) {
-			// this is a really bad XP specific hack
-			// XP users seems to be getting stuck in the inner conditional
-			// which doesn't make sense
-			if (!$this->session->userdata('logged_in')) {
-				if ($is_XP) {
-            		//$this->addLog(null, 'XP user', 'flag');
-				}
-				elseif ($this->uri->segment(1) == 'app' && preg_match('/^\d+$/', $this->uri->segment(2))) {
-            		$this->addLog(null,'nologin','app',$this->uri->segment(2),'fail');
-					$this->session->set_flashdata('club', $this->uri->segment(2));
-					redirect(base_url().'login');
-					return;
-				}
-				
-			    redirect(base_url());
-			}
         }
         // we should only get here when showing error pages
         else {
-        	
+            if ( !$this->session->userdata('logged_in') ) {
+                redirect('home');
+            }
         }
+
+		$this->load->library('Validate');
+		$this->v =& $this->validate;
 	}
 	
 
-
-	
-	/**
-	 * creates a log entry
-	 *
-	 * @param int uid			user id
-	 * @param string note		description of action
-	 */
-	function message($message,$status=0) {
-		$result = array();
-		$result['message'] = $message;
-		$result['uid'] = ($this->session->userdata('logged_in') ? $this->person_data['id'] : 0);
-		$data = json_encode(array('status' => $status,'result' => $result));
-		$this->output->set_content_type('application/json')->set_output( $data );
-	}
-	
-	
 	
 	
 	/**
@@ -177,14 +83,32 @@ class Base extends CI_Controller {
 	 * @param int uid			user id
 	 * @param string note		description of action
 	 */
-	function response($status,$result) {
+	function respond($status, $data) {
 		$result['uid'] = $this->person_data['id'];
-		$data = json_encode(array('status' => $status,'result' => $result));
+		$data = json_encode(array('status' => $status,'data' => $data));
 		$this->output->set_content_type('application/json')->set_output( $data );
 	}
 
 
 
+	
+	/**
+	 * creates a log entry
+	 *
+	 * @param int uid			user id
+	 * @param string note		description of action
+	 */
+	function message($message, $status=0) {
+		$result = array(
+			'message'	=> $message
+		);
+
+		$data = json_encode(array('status' => $status,'data' => $result));
+		$this->output->set_content_type('application/json')->set_output( $data );
+	}
+	
+	
+	
 
 	/**
 	 * creates a log entry
@@ -220,85 +144,6 @@ class Base extends CI_Controller {
 
 
 
-
-	/**
-	 * creates a log entry
-	 *
-	 * @param int uid			user id
-	 * @param string note		description of action
-	 */
-	function addVisit($uid, $club, $token) {
-		$ip = $_SERVER['REMOTE_ADDR'];
-		if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-			$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-		}
-
-		//$ip = $_SERVER['HTTP_X_FORWARDED_FOR']?$_SERVER['HTTP_X_FORWARDED_FOR']:$_SERVER['REMOTE_ADDR'];
-		if(strpos($ip,',') !== false) {
-			$ip = substr($ip,0,strpos($ip,','));
-		}
-		
-		$this->load->library('user_agent');
-		$data = array(
-			'browser' => $this->agent->browser(),
-			'version' => $this->agent->version(),
-			'mobile' => $this->agent->mobile(),
-			'platform' => $this->agent->platform(),
-			'referrer' => $this->agent->referrer(),
-			'ip' => $ip,
-			'user' => $uid,
-			'club' => $club,
-			'created' => date('Y-m-d H:i:s'),
-			'token' => $token
-		);
-		
-		$this->load->model('Tb_model');
-		$this->Tb_model->addVisit($data);
-	}
-	
-	
-	
-	
-
-	function in_club($uid, $cid) {
-		$this->load->model('Tb_model');
-		$mem = $this->Tb_model->getOne('membership', array('user'=>$uid, 'club'=>$cid));
-
-		if ($mem) {
-			switch ($mem->status) {
-				case 'active':
-					return true;
-				case 'pending':
-					return false;
-				default:
-					return false;
-			}
-		}
-
-		return false;
-	}
-	
-
-
-
-	function has_admin($cid) {
-		$this->load->model('Tb_model');
-		$members = $this->Tb_model->get('members', array('club'=>$cid));
-
-		if (!empty($mem)) {
-			foreach ($members AS $m) {
-				if (!preg_match('/^\d+$/', $m->email) && $m->admin) {
-					return TRUE;
-				}
-			}
-		}
-
-		return FALSE;
-	}
-	
-	
-	
-	
 	/*
 	 *--------------------------------------------------------------------------
 	 * Utilities

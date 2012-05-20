@@ -19,8 +19,14 @@ class Logout extends Base {
 
     function __construct() {
         parent::__construct();
+        $this->load->model('Account_model');
 	}
 	
 	
+	function index() {
+		$this->Account_model->logout();
+		redirect(base_url());
+	}
+
 	
 }

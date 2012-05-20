@@ -22,5 +22,15 @@ class Dashboard extends Base {
 	}
 	
 	
+	function index() {
+		// get templates
+		$this->page_data['templates'] = false;
+
+		// get quizzes
+		
+
+		$this->load->view('dashboard', $this->page_data);	
+	}
 	
+
 }
