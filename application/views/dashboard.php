@@ -4,8 +4,8 @@
 <div class="dashboard">
 	<div class="dashboard-left">
 		
-		<a href="quiz/build" class="btn btn-info dashboard-btn">Create New Quiz</a>
-		<a href="problem/build" class="btn btn-info dashboard-btn">Create New Problem</a>
+		<a href="index.php/quiz/build" class="btn btn-info dashboard-btn">Create New Quiz</a>
+		<a href="index.php/problem/build" class="btn btn-info dashboard-btn">Create New Problem</a>
 
 		<div class="dashboard-col dashboard-col-left">
 			<h1>Your Quizzes</h1>
