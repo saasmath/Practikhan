@@ -43,6 +43,7 @@ $route['404_override'] = '';
 
 
 $route['problem/:num/profile'] = 'problem/profile';
+$route['graphs'] = 'graphs/view';
 
 
 /* End of file routes.php */
