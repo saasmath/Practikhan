@@ -31,6 +31,17 @@ class Problem extends Base {
 	function build() {		
 		$submitted = $this->input->post('submitted');
 
+		$this->page_data['values'] = array(
+			'name'		=> '',
+			'info'		=> '',
+			'topic'		=> '',
+			'vars'		=> '',
+			'question'	=> '',
+			'solution'	=> '',
+			'choices'	=> '',
+			'hints'		=> ''
+		);
+
 		if (!$submitted) {
 			$this->load->view('problem/build', $this->page_data);
 			return;
