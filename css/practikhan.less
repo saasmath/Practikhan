@@ -5,7 +5,7 @@ body {
 }
 
 div.container.main {
-	background:#f4f4f4;
+	background:#fff;
 	border:1px solid #bbb;
 	.shadowed(0px,5px,20px,1px,0.35);
 	.rounded(5px);
@@ -45,7 +45,12 @@ div#registerModal {
 
 div.dashboard {
 	position:relative;
-
+	padding:0;
+	h1.dashboardTitle {
+		color:#666;
+		margin:10px 20px 5px;
+		width:500px;
+	}
 	div.dashboard-left {
 		background:#FFF;
 		position:relative;
@@ -55,12 +60,7 @@ div.dashboard {
 		a.dashboard-btn {
 			font-size:32px; line-height:1.2em;
 			display:block; height:auto;
-			margin:10px 30px; padding:5px;
-		}
-
-		div.dashboard-col {
-			
-			width:250px;
+			margin:20px 20px 0px; padding:5px;
 		}
 	}
 
@@ -68,11 +68,59 @@ div.dashboard {
 		background:#eee;
 		position:absolute; top:0px; right:0px;
 		width:250px;
-		height:500px;
+		padding:0 0 30px;
+
+		h3.dashboardUsername {
+			color:#555;
+			margin:15px 0 0;
+		}
+		p.dashboardEmail {
+			color:#999;
+		}
+		p.dashboardStat {
+			color:#666;
+			font-size:12px;
+			strong {
+				font-size:18px;
+			}
+		}
+		hr {
+			border-top:1px solid #bbb;
+		}
 	}
 }
 
 
+ul.navList {
+	position:relative;
+	display:block;
+	margin-right:20px;
+
+	li.navListItem {
+		.gradiented(#f7f7f7,#eee);
+		border:1px solid #ccc; .rounded(5px);
+		list-style:none;
+		display:block;
+		margin:5px 0; padding:5px 10px;
+		a {
+			display:block;
+		}
+		span.name {
+			color:#666; font-size:18px; font-weight:600;
+			text-shadow: 0.1em 0.1em 0.1em #fff;
+			line-height:20px;
+		}
+		span.topic {
+			color:#999; font-style:italic;
+			line-height:20px;
+		}
+
+		cursor:pointer;
+		&:hover {
+			background:#ddd;
+		}
+	}
+}
 
 
 // Problem Builder  -----------------------------------------------------------
@@ -136,7 +184,7 @@ p.problemInfo {
 	margin:10px;
 }
 div.problemDemo {
-	background:#ddd;
+	background:#f8f8f8;
 	border:1px solid #999; .rounded(8px);
 	min-height:100px;
 	margin:30px 10px;
@@ -145,6 +193,23 @@ div.problemSource {
 	border-top:1px solid #888;
 	margin:10px;
 }
+
+
+
+
+
+
+// Problem Interface  ---------------------------------------------------------
+
+div#container {
+	padding:0;
+	margin:5px;
+	div#problem-and-answer {
+		margin:0;
+	}
+}
+
+
 
 
 

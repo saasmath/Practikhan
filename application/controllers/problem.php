@@ -136,6 +136,7 @@ class Problem extends Base {
 		}
 		$this->page_data['problem'] = $problem;
 		$this->page_data['subscribed'] = 0;
+		$this->page_data['loadkhan'] = 1;
 		
 		$this->load->view('problem/profile', $this->page_data);
 	}

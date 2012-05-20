@@ -266,7 +266,7 @@ $config['encryption_key'] = 'akshdflhalo382hroja3;29r;a39ow';
 |
 */
 $config['sess_cookie_name']		= 'practikhansession';
-$config['sess_expiration']		= 7200;
+$config['sess_expiration']		= 1200000;
 $config['sess_expire_on_close']	= FALSE;
 $config['sess_encrypt_cookie']	= FALSE;
 $config['sess_use_database']	= FALSE;

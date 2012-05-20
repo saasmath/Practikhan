@@ -10,9 +10,31 @@
 	</div>
 	<p class="problemInfo"><?=$problem->info?></p>
 
-	<div class="problemDemo">
+
+	<div id="problemDemo" class="problemDemo">
 		
 	</div>
+
+	<div class="problemDemo">
+		<div class="exercise">
+			<div class="vars">
+			  <?=$problem->vars?>
+			</div>
+
+			<div class="problems">
+				<div id="problem-type-or-description">
+					<!-- <p class="problem"></p> -->
+					<div class="question"><?=$problem->question?></div>
+					<div class="solution"><?=$problem->solution?></div>
+				</div>
+			</div>
+
+			<div class="hints">
+			  	<?=$problem->hints?>
+			</div>
+		</div>
+	</div>
+
 
 	<div class="problemSource">
 		<div class="problemAttr">
