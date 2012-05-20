@@ -14,6 +14,7 @@
         password: $('#registerPassword').val(),
         passwordConfirmation: $('#registerPasswordConfirmation').val()
       };
+      console.log('registering');
       $('#registerAlert').hide();
 
       callAjax('register', params, function(status, data) {
@@ -40,6 +41,7 @@
         password: $('#loginPassword').val()
       };
 
+      console.log('loggin in');
       callAjax('login', params, function(status, data) {
         if (!status) {
           alert('Account and password do not match');
