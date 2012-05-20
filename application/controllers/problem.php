@@ -110,7 +110,7 @@ class Problem extends Base {
 		}
 
 		// login successful, redirect to home page
-		redirect(base_url()."problem/$problem/profile");
+		redirect(base_url()."index.php/problem/$problem/profile");
 	}
 
 

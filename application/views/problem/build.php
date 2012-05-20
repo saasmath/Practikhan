@@ -9,7 +9,7 @@
 		<?php if (isset($errors)) { ?>
 		<div class="alert alert-error"><?=$errors?></div>
 		<?php } ?>
-		<form class="well" action="problem/build" method="post">
+		<form class="well" action="index.php/problem/build" method="post">
 			<input type="hidden" name="submitted" value="1">
 
 			<div class="inline-form">
