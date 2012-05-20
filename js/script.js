@@ -17,7 +17,7 @@
       console.log('registering');
       $('#registerAlert').hide();
 
-      callAjax('register', params, function(status, data) {
+      callAjax('index.php/register', params, function(status, data) {
         if (status < -100) {
           $('#registerAlert').text('There was an error').fadeIn(400);
           return false;
@@ -42,7 +42,7 @@
       };
 
       console.log('loggin in');
-      callAjax('login', params, function(status, data) {
+      callAjax('index.php/login', params, function(status, data) {
         if (!status) {
           alert('Account and password do not match');
           return false;
