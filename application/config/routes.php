@@ -42,6 +42,7 @@ $route['default_controller'] = "home";
 $route['404_override'] = '';
 
 
+$route['code-edit'] = 'graphs/edit';
 $route['problem/:num/profile'] = 'problem/profile';
 $route['graphs'] = 'graphs/view';
 

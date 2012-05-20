@@ -13,7 +13,11 @@
   <link href='//fonts.googleapis.com/css?family=Stardos+Stencil:700' rel='stylesheet' type='text/css'>  
   <link rel="stylesheet/less" type="text/css" href="css/bootstrap.less">
   <link rel="stylesheet/less" type="text/css" href="css/practikhan.less">
+  <link rel="stylesheet/less" type="text/css" href="css/graph.css">
+  <link rel="stylesheet" type="text/css" href="css/codemirror.css">
   <script src="js/less-1.3.0.min.js" type="text/javascript"></script>
+  <script src="js/codemirror.js" type="text/javascript"></script>
+  <script src="js/xml.js" type="text/javascript"></script>
 </head>
 <body>
   

@@ -7,9 +7,8 @@ function rnd(mean, stdev) {
   return Math.round(rnd_snd() * stdev + mean);
 }
 (function() {
-
   var
-    container = document.getElementById('container'),
+    container = document.getElementById('graphing-container'),
     d1 = [],
     d2 = [],
     graph, i, j,
