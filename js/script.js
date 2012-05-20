@@ -4,6 +4,8 @@
 
   $(document).ready(function() {
 
+    //$('#myTab a:last').tab('show');
+
     // wire registration form -------------------------------------------------
     $('#registerForm').on('submit', function() {
       var params = {

@@ -28,12 +28,12 @@
 					<option value=""></option>
 					<option value="Arithmetic">Arithmetic</option>
 					<option value="Algebra">Algebra</option>
-					<option value=""></option>
-					<option value=""></option>
-					<option value=""></option>
-					<option value=""></option>
-					<option value=""></option>
-					<option value=""></option>
+					<option value="Geometry">Geometry</option>
+					<option value="Trigonometry">Trigonometry</option>
+					<option value="Probability">Probability</option>
+					<option value="Statistics">Statistics</option>
+					<option value="Precalculus">Precalculus</option>
+					<option value="Calculus">Calculus</option>
 				</select>
 			</div>
 

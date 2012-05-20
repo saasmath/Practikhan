@@ -16,6 +16,27 @@
 */
 $config['base_url']	= 'http://localhost/Practikhan/';
 
+if (defined('ENVIRONMENT'))
+{
+	switch (ENVIRONMENT)
+	{
+		case 'development':
+			$config['base_url']     = 'http://localhost/Practikhan/';
+		break;
+	
+		case 'testing':
+			$config['base_url']     = 'http://genghis.thinkbinder.com/';
+		break;
+
+		case 'production':
+			$config['base_url']     = 'http://genghis.thinkbinder.com/';
+		break;
+
+		default:
+			exit('The application environment is not set correctly.');
+	}
+}
+
 /*
 |--------------------------------------------------------------------------
 | Index File

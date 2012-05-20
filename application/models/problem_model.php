@@ -30,8 +30,8 @@ class Problem_model extends Practikhan_model {
 			'vars'		=> $vars,
 			'question'	=> $question,
 			'solution'	=> $solutions,
-			'choices'	=> $hints,
-      	    'hints'		=> date('Y-m-d H:i:s'),
+			'choices'	=> $choices,
+      	    'hints'		=> $hints,
       	    'created'	=> date('Y-m-d H:i:s'),
       	    'user'		=> $user
 		);

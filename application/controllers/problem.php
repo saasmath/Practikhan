@@ -117,14 +117,15 @@ class Problem extends Base {
 	function profile() {
 		$id = $this->uri->segment(2);
 
-		$problem = $this->Problem_model->get('problem', array('id'=>$id));
+		$problem = $this->Problem_model->getOne('problem', array('id'=>$id));
 		if (!$problem) {
 			$this->page_data['errors'] = 'Question not found';				
 			$this->load->view('problem/profile', $this->page_data);
 			return;
 		}
-
 		$this->page_data['problem'] = $problem;
+		$this->page_data['subscribed'] = 0;
+		
 		$this->load->view('problem/profile', $this->page_data);
 	}
 
