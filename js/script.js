@@ -17,7 +17,7 @@
       console.log('registering');
       $('#registerAlert').hide();
 
-      callAjax('index.php/register', params, function(status, data) {
+      callAjax(website+'index.php/register', params, function(status, data) {
         if (status < -100) {
           $('#registerAlert').text('There was an error').fadeIn(400);
           return false;
@@ -27,7 +27,7 @@
           return false;
         }
 
-        window.location.href = website+'dashboard';
+        window.location.href = website+'index.php/dashboard';
       });
 
       return false;
@@ -42,13 +42,13 @@
       };
 
       console.log('loggin in');
-      callAjax('index.php/login', params, function(status, data) {
+      callAjax(website+'index.php/login', params, function(status, data) {
         if (!status) {
           alert('Account and password do not match');
           return false;
         }
         
-        window.location.href = website+'dashboard';
+        window.location.href = website+'index.php/dashboard';
       });
 
       return false;
